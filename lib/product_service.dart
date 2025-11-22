@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:meshop/product.dart';
 
 class ApiService {
-  static const String BASE_URL = "https://ecommerce-app-ci4j.onrender.com";
+  static const String BASE_URL = "http://localhost:5000";
 
   // Get All Products
   static Future<List<Product>> getProducts() async {
