@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:meshop/cart/cart_page.dart';
 import 'package:meshop/product.dart';
 import 'product_details_page.dart';
 
@@ -41,7 +42,20 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("E-Commerce App")),
+      appBar: AppBar(
+        title: Text("E-Commerce App"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => CartPage()),
+              );
+            },
+            icon: Icon(Icons.shopping_bag),
+          ),
+        ],
+      ),
       body: isLoading
           ? Center(child: CircularProgressIndicator())
           : GridView.builder(

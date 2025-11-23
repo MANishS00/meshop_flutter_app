@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:meshop/cart/cart_service.dart';
 import 'package:meshop/product.dart';
 
 class ProductDetailsPage extends StatelessWidget {
@@ -84,6 +85,17 @@ class ProductDetailsPage extends StatelessWidget {
                   ),
                   SizedBox(height: 5),
                   Text(product.description, style: TextStyle(fontSize: 16)),
+                  ElevatedButton(
+                    onPressed: () async {
+                      bool ok = await CartService.addToCart(product.id);
+                      if (ok) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("Added to cart!")),
+                        );
+                      }
+                    },
+                    child: Text("Add to Cart"),
+                  ),
                 ],
               ),
             ),
