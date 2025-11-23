@@ -37,6 +37,8 @@ dependencies:
   http: ^1.6.0
   image_picker: ^1.2.1
   carousel_slider: ^5.1.1
+  uuid:
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:

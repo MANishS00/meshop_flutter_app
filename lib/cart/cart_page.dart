@@ -71,9 +71,61 @@ class _CartPageState extends State<CartPage> {
                             fit: BoxFit.cover,
                           ),
                           title: Text(item.product.name),
-                          subtitle: Text(
-                            "₹${item.product.offerPrice} x ${item.quantity}",
+
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("₹${item.product.offerPrice}"),
+
+                              Row(
+                                children: [
+                                  // MINUS BUTTON
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.remove_circle,
+                                      color: Colors.red,
+                                    ),
+                                    onPressed: () async {
+                                      if (item.quantity > 1) {
+                                        await CartService.updateQuantity(
+                                          item.id,
+                                          item.quantity - 1,
+                                        );
+                                        fetchCart();
+                                      }
+                                    },
+                                  ),
+
+                                  // QUANTITY
+                                  Text(
+                                    item.quantity.toString(),
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+
+                                  // PLUS BUTTON
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.add_circle,
+                                      color: Colors.green,
+                                    ),
+                                    onPressed: () async {
+                                      if (item.quantity < 5) {
+                                        await CartService.updateQuantity(
+                                          item.id,
+                                          item.quantity + 1,
+                                        );
+                                        fetchCart();
+                                      }
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
+
                           trailing: IconButton(
                             icon: Icon(Icons.delete, color: Colors.red),
                             onPressed: () async {
