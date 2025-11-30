@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meshop/cart/cart_model.dart';
 import 'package:meshop/cart/cart_service.dart';
+import 'package:meshop/checkout/checkout_screen.dart';
 
 class CartPage extends StatefulWidget {
   @override
@@ -153,7 +154,14 @@ class _CartPageState extends State<CartPage> {
                       ),
                       SizedBox(height: 10),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CheckoutScreen(),
+                            ),
+                          );
+                        },
                         child: Text("Proceed to Checkout"),
                       ),
                     ],
